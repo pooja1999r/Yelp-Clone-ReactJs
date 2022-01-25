@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import { RestaurantsContext } from "../context/RestaurantsContext";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import StarRating from "./StarRating";
 
 const RestaurantList = (props) => {
@@ -75,7 +75,7 @@ const RestaurantList = (props) => {
                   onClick={() => handleRestaurantSelect(restaurant.id)}
                   key={restaurant.id}
                 >
-                  <td>{restaurant.name}</td>
+                  <td>  <Link to={`/restaurants/${restaurant.id}`}> {restaurant.name} </Link></td>
                   <td>{restaurant.location}</td>
                   <td>{"$".repeat(restaurant.price_range)}</td>
                   <td>{renderRating(restaurant)}</td>

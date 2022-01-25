@@ -11,11 +11,12 @@ const RestaurantDetailPage = () => {
   const { selectedRestaurant, setSelectedRestaurant } = useContext(
     RestaurantsContext
   );
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await RestaurantFinder.get(`/${id}`);
+        console.log("Restaurents");
         console.log(response);
 
         setSelectedRestaurant(response.data.data);
@@ -26,6 +27,7 @@ const RestaurantDetailPage = () => {
 
     fetchData();
   }, []);
+  
   return (
     <div>
       {selectedRestaurant && (
@@ -34,10 +36,10 @@ const RestaurantDetailPage = () => {
             {selectedRestaurant.restaurant.name}
           </h1>
           <div className="text-center">
-            <StarRating rating={selectedRestaurant.restaurant.average_rating} />
+            <StarRating rating={selectedRestaurant.restaurant.price_range} />
             <span className="text-warning ml-1">
-              {selectedRestaurant.restaurant.count
-                ? `(${selectedRestaurant.restaurant.count})`
+              {selectedRestaurant.restaurant.price_range
+                ? `(${selectedRestaurant.restaurant.price_range})`
                 : "(0)"}
             </span>
           </div>
